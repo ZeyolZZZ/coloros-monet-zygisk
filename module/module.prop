@@ -1,0 +1,6 @@
+id=coloros_monet_zygisk
+name=ColorOS Monet (per-process overlay)
+version=v0.1.0-test
+versionCode=1
+author=RMX5080
+description=最小验证版：只在目标进程里记录包名，不做挂载。开机失败一次即自动卸载。

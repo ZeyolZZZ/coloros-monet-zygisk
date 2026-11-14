@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(monet_zygisk CXX)
+set(CMAKE_CXX_STANDARD 17)
+add_library(monet_zygisk SHARED module.cpp)
+target_link_libraries(monet_zygisk log)
+set_target_properties(monet_zygisk PROPERTIES PREFIX "" OUTPUT_NAME "arm64-v8a")
