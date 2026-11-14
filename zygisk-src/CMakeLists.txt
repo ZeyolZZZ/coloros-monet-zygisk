@@ -9,7 +9,7 @@ target_link_libraries(monet_zygisk log)
 
 # 与 LSPosed / ZygiskNext 自身一致：strip 掉符号和调试信息
 target_compile_options(monet_zygisk PRIVATE -fvisibility=hidden -fvisibility-inlines-hidden)
-target_link_options(monet_zygisk PRIVATE -s -Wl,--gc-sections -Wl,-z,max-page-size=16384)
+target_link_options(monet_zygisk PRIVATE -s -Wl,--gc-sections )
 target_compile_options(monet_zygisk PRIVATE -ffunction-sections -fdata-sections)
 target_compile_options(monet_zygisk PRIVATE -fno-exceptions -fno-rtti)
 
