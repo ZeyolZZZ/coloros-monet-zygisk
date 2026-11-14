@@ -35,6 +35,9 @@ public:
     void onLoad(Api *api, JNIEnv *env) override {
         api_ = api;
         env_ = env;
+        // 关键：钩子跑完后让 Zygisk 卸载本模块的 .so，
+        // 避免它长期留在进程内存里被扫描成"匿名可执行映射"。
+        api_->setOption(zygisk::Option::DLCLOSE_MODULE_LIBRARY);
     }
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
@@ -68,4 +71,10 @@ private:
     JNIEnv *env_ = nullptr;
 };
 
+// companion 入口：daemon 侧会在这里被调用（下一步实现挂载逻辑）
+static void companion_handler(int) {
+    LOGI("companion_handler entered");
+}
+
 REGISTER_ZYGISK_MODULE(MonetModule)
+REGISTER_ZYGISK_COMPANION(companion_handler)
